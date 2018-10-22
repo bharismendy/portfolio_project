@@ -1,0 +1,50 @@
+{% load static %}
+<!-- Page de base pour tout le site sauf la page d'accueil
+     Incluant notamment le header avec titre et formulaire
+   -->
+{# block used as header #}
+{% block header %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <!-- Chargement du CSS, bootstrap, javascript et jQuery -->
+        {% load bootstrap4 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery='full' %}
+        {% bootstrap_messages %}
+        <title>Brice Harismendy</title>
+        <link type="text/css" href="{% static "materialize/css/materialize.min.css" %}"  media="screen,projection" rel="stylesheet"/>
+        <link type="text/css" href="{% static "own/css/general.css" %}" rel="stylesheet"/>
+        <title>Portefeuille de compétence de Brice Harismendy</title>
+    </head>
+    <body>
+{% endblock %}
+
+{% block nav %}
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#">&Aacute;&nbsp;propos&nbsp;de&nbsp;moi</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#" class = "dropdown-content">Formation</li>
+        <li><a href="#">Ex&eacute;riences professionnelles</a></li>
+        <li><a href="#">R&eacute;alisations</a></li>
+        <li><a href="#">Se&nbsp;connecter</a></li>
+      </ul>
+    </div>
+  </nav>
+{% endblock %}
+
+{% block content %}
+    <!--content of the body-->
+{% endblock %}
+
+{# block used for footer #}
+{% block footer%}
+        <footer>
+
+        </footer>
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="{% static "materialize/js/materialize.min.js" %}"></script>
+    </body>
+</html>
+{%  endblock %}
