@@ -1,0 +1,63 @@
+{% load static %}
+<!-- Page de base pour tout le site sauf la page d'accueil
+     Incluant notamment le header avec titre et formulaire
+   -->
+{# block used as header #}
+{% block header %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Chargement du CSS, bootstrap, javascript et jQuery -->
+    <link type="text/css" media="all" href="{% static "bootstrap-4.3.1-dist/css/bootstrap.min.css" %}" rel="stylesheet"/>
+    <title>Portefeuille de compétence de Brice Harismendy</title>
+    </head>
+    <body>
+{% endblock %}
+
+{% block nav %}
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'accueil' %}">Brice Harismendy</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="{% url 'accueil' %}">Home</a></li>
+              <li><a href="{% url 'accueil' %}">Rechercher</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_superuser %}
+                <li><a href="{% url 'accueil' %}">Admin Panel</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'accueil' %}">Profil</a></li>
+                <li><a href="{% url 'accueil' %}">Proposer un projet</a></li>
+                <li><a href="{% url 'accueil' %}">Deconnexion</a></li>
+            {% else %}
+                <li><a href="{% url 'accueil' %}">Connexion</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+    <hr>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!--content of the body-->
+{% endblock %}
+
+{# block used for footer #}
+{% block footer%}
+
+
+        <footer>
+        <hr>
+            <div style="text-align: center">
+                <a href="{% url 'accueil' %}"><button>Mentions Légales</button></a>
+                <a href="{% url 'accueil' %}"><button>Notre flux rss</button></a>
+                <a href="{% url 'accueil' %}"><button>Contact us</button></a>
+            </div>
+
+        </footer>
+    </body>
+</html>
+{%  endblock %}
