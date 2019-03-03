@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class ="col-md-8 col-lg-8 col-md-offset-2">
+         <h2>Profil de {{ request.user.username }}</h2>
+        {% if user.personne.avatar %}
+            <img src="{{ request.user.personne.avatar.url }}" alt="avatar" height="150">
+        {% endif %}
+        <form method="POST" class="pt-5" action={% url 'account' %} enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form_edit_utilisateur.visible_fields %}
+
+                <div class="row form-group">
+                    <div class="col-lg-12 text-danger">
+                      {{ field.errors | safe }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-lg-7">
+                      {{ field }}
+                      {{ field.help_text | safe}}
+                    </div>
+                </div>
+            {% endfor %}
+         <button class="btn btn-success default-primary-color float-right" name="btn-update-profil" type="submit">Save my profile</button>
+        </form>
+         <form method="post" class="margin_5" action="{% url 'account' %}">
+            {%  csrf_token %}
+            {% for field in form_edit_password.visible_fields %}
+                <div class="row form-group">
+                    <div class="col-lg-12 text-danger">
+                      {{ field.errors | safe }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="col-lg-7">
+                      {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="btn btn-success default-primary-color float-right" name="btn-password" type="submit">Update my password</button>
+        </form>
+        </div>
+        </div>
+     {% if list_of_article %}
+            <div class="row">
+                <div class="col-md-10  col-md-offset-2 margin_5">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Titre de l'article</th>
+                      <th scope="col">Contenu</th>
+                      <th scope="col">lien</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for article in list_of_article %}
+                    <tr>
+                      <th>{{ article.titre }}</th>
+                      <td>{{ article.description | slice:":70"  }}</td>
+                      <td><a href="{% url 'accueil' id_projet=article.id %}">accèder</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

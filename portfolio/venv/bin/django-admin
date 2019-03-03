@@ -1,5 +1,4 @@
-#!/home/bharismendy/PycharmProjects/portfolio/venv/bin/python
-
+#!/home/bharismendy/Documents/pycharm_project/portfolio/venv/bin/python3.6
 # -*- coding: utf-8 -*-
 import re
 import sys

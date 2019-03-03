@@ -81,10 +81,15 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'portfolio',
+        'USER': 'dataslave',
+        'PASSWORD': 'P@ssw0rd',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -128,7 +133,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'common/static')
 
-MEDIA_URL = '/media_storage/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_storage')
 
 # coold be used
