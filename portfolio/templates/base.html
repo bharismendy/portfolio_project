@@ -48,7 +48,7 @@
             {% endif %}
             {% if user.is_authenticated %}
                 <li><a href="{% url 'account' %}" class="nav-link">Profil</a></li>
-                <li><a href="{% url 'accueil' %}" class="nav-link">Rédiger un article</a></li>
+                <li><a href="{% url 'article/new_article' %}" class="nav-link">Rédiger un article</a></li>
                 <li><a href="{% url 'accueil' %}" class="nav-link">Déconnexion</a></li>
             {% else %}
                 <li class="nav-item"><a class="nav-link" href="{% url 'auth' %}">Connexion</a></li>

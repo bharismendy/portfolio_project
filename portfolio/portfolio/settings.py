@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'common',
     'contact',
     'media',
+    'markdownx',
     'utilisateur'
 ]
 

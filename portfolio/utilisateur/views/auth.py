@@ -37,6 +37,6 @@ def auth(request):
     else:
         register_form = SignUpForm()
     return render(request, "utilisateur/auth.html", {'register_form': register_form,
-                                                                     'login_form': login_form,
-                                                                     'error_login': error_login,
-                                                                     'error_register': error_register})
+                                                     'login_form': login_form,
+                                                     'error_login': error_login,
+                                                     'error_register': error_register})

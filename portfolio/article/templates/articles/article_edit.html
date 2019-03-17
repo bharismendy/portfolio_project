@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{{% block content %}
+    <div class="container center_auth" >
+            <div class="row" id="content_sign_in_up">
+                <div class="col col-lg-6" id="form_sign_in">
+                   <form method="POST" action="">{% csrf_token %}
+                    {{ form_article }}
+                </form>
+                {{ form_article.media }}
+                </div>
+            </div>
+    </div>
+{% endblock %}
