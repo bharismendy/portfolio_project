@@ -1,4 +1,4 @@
-#!/home/bharismendy/Documents/pycharm_project/portfolio/venv/bin/python
+#!/home/bharismendy/PycharmProjects/portfolio/venv/bin/python
 
 import sys
 import getopt
