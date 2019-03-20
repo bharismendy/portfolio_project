@@ -1,2 +1,2 @@
-from .account import account
-from .auth import auth
+from utilisateur.views.account import account
+from utilisateur.views.auth import auth

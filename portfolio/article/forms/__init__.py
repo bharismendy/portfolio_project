@@ -1,1 +1,1 @@
-from .edit_article import EditArticle
+from .new_article import EditArticle
