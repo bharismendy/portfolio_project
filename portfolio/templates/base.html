@@ -44,7 +44,7 @@
         </ul>
           <ul class="nav navbar-nav navbar-right navbar-fixed-top">
             {% if user.is_superuser %}
-                <li><a href="{% url 'accueil' %}" class="nav-link">Admin Panel</a></li>
+                <li><a href="{% url 'utilisateur/admin_panel' %}" class="nav-link">Admin Panel</a></li>
             {% endif %}
             {% if user.is_authenticated %}
                 <li><a href="{% url 'utilisateur/dashboard' %}" class="nav-link">Profil</a></li>
