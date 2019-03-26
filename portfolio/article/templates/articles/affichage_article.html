@@ -2,11 +2,16 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col col-lg-8">
+            <div class="col col-lg-12">
+                {% if user.is_superuser or user.personne == article.personne %}
+                    <div class="text-right">
+                        <hr>
+                            <a class="btn btn-dark" href="#">Editer l'article</a>
+                        <hr>
+                    </div>
+                {% endif %}
                 {% if article.image %}
                     <img class="img-circle" src="{{ article.image.url }}" alt="Photo de l'article" width="140" height="140">
-                {% else %}
-                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
                 {% endif %}
                     <h1>{{ article.titre }}</h1>
                     <article class="text-justify">

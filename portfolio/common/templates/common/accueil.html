@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 {% for article in articles %}
                         <div class="col-lg-4 text-center margin_5">
-                        {% if projet.image %}
+                        {% if article.image %}
                             <img class="rounded-circle" src="{{ article.image.url }}" alt="Photo d'entête de l'article" width="140" height="140">
                         {% else %}
                             <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">

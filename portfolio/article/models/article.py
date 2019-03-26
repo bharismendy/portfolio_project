@@ -2,7 +2,7 @@ from django.db import models
 from utilisateur.models import Personne
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
-from categorie.models import Categorie
+from categorie.models import CategorieNiv1
 
 
 class Article (models.Model):
@@ -10,7 +10,7 @@ class Article (models.Model):
     resume = models.CharField(max_length=200, null=False, default=None)
     titre = models.CharField(max_length=100, null=False, default=None)
     content = MarkdownxField()
-    categorie = models.ManyToManyField(Categorie, default=None)
+    categorie_niv1 = models.ForeignKey(CategorieNiv1, on_delete=models.CASCADE, default=None)
     image = models.ImageField(null=True, blank=True, upload_to="image_projet/")
 
     @property
