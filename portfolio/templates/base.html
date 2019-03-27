@@ -28,35 +28,40 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
                 </li>
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+                {% for niv1 in cat_niv_1 %}
+                    {%  for niv2 in cat_niv_2 %}
+                        {% if cat2.id_categorie_niv_1.id_categorie_niv_1 ==  cat1.id_categorie_niv_1 %}
+                            <a class="dropdown-item" href="{% url 'view' %}?category={{ cat2.nom|urlencode }}">{{ cat2.nom }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ niv1.nom_categorie }}</a>
+                    </li>
+                {% endfor %}
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>-->
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-fixed-top">
                 {% if user.is_superuser %}
                     <li class="nav-item">
-                        <a href="{% url 'utilisateur/admin_panel' %}" class="nav-link">Admin Panel</a>
+                        <a href="{% url 'administration/admin_panel' %}" class="nav-link">Admin Panel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'article/new_article' %}" class="nav-link">Rédiger un article</a>
                     </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a href="{% url 'utilisateur/dashboard' %}" class="nav-link">Profil</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'article/new_article' %}" class="nav-link">Rédiger un article</a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{% url 'accueil' %}" class="nav-link">Déconnexion</a>
                     </li>
@@ -77,6 +82,8 @@
 {% endblock %}
 <main role="main">
     <div class="jumbotron">
+        {% block nav_admin %}
+        {% endblock %}
         {% block content %}
             <!--content of the body-->
         {% endblock %}
@@ -85,7 +92,10 @@
 {# block used for footer #}
 {% block footer%}
         <footer>
-        <hr>
+            <script type="text/javascript" src="{% static "jquery/jquery.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
+            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
+            <hr>
             <div class="d-flex justify-content-center bd-highlight mb-3">
                 <a href="{% url 'mention' %}"><button type="button" class="btn" >Mentions Légales</button></a>
                 <a href="{% url 'accueil' %}"><button type="button" class="btn">Contact us</button></a>

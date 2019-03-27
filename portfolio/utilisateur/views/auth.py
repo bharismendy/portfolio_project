@@ -20,7 +20,7 @@ def auth(request):
             password = login_form.cleaned_data["mot_de_passe"]
             user = authenticate(username=identifiant, password=password)  # Nous vérifions si les données sont correctes
             if user:  # Si l'objet renvoyé n'est pas None
-                login(request, user)  # nous connectons l'utilisateur
+                login(request, user)  # nous connectons l'administration
                 return redirect(reverse('accueil'))
             else:  # sinon une erreur sera affichée
                 error_login = True
