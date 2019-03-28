@@ -39,11 +39,10 @@ INSTALLED_APPS = [
     'bootstrap4',
     'article',
     'categorie',
-    'administration',
+    'commentaire',
     'common',
     'contact',
     'media',
-    'markdownx',
     'utilisateur'
 ]
 

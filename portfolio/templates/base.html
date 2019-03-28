@@ -16,86 +16,62 @@
 {% endblock %}
 
 {% block nav %}
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{% url 'accueil' %}">Brice Harismendy</a>
-        <button class="navbar-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="{% url 'accueil' %}">Brice Harismendy</a>
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
-                </li>
-                {% for niv1 in cat_niv_1 %}
-                    {%  for niv2 in cat_niv_2 %}
-                        {% if cat2.id_categorie_niv_1.id_categorie_niv_1 ==  cat1.id_categorie_niv_1 %}
-                            <a class="dropdown-item" href="{% url 'view' %}?category={{ cat2.nom|urlencode }}">{{ cat2.nom }}</a>
-                        {% endif %}
-                    {% endfor %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">{{ niv1.nom_categorie }}</a>
-                    </li>
-                {% endfor %}
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right navbar-fixed-top">
-                {% if user.is_superuser %}
-                    <li class="nav-item">
-                        <a href="{% url 'administration/admin_panel' %}" class="nav-link">Admin Panel</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'article/new_article' %}" class="nav-link">Rédiger un article</a>
-                    </li>
-                {% endif %}
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a href="{% url 'utilisateur/dashboard' %}" class="nav-link">Profil</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'accueil' %}" class="nav-link">Déconnexion</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'auth' %}">Connexion</a>
-                    </li>
-                {% endif %}
-            </ul>
-            <!--
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>-->
-        </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto"><!--
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>-->
+        </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_superuser %}
+                <li><a href="{% url 'accueil' %}" class="nav-link">Admin Panel</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'account' %}" class="nav-link">Profil</a></li>
+                <li><a href="{% url 'accueil' %}" class="nav-link">Rédiger un article</a></li>
+                <li><a href="{% url 'accueil' %}" class="nav-link">Déconnexion</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'auth' %}">Connexion</a></li>
+            {% endif %}
+          </ul>
+          <!--
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>-->
+      </div>
     </nav>
-</header>
+    </header>
 {% endblock %}
-<main role="main">
-    <div class="jumbotron">
-        {% block nav_admin %}
-        {% endblock %}
         {% block content %}
             <!--content of the body-->
         {% endblock %}
-    </div>
-</main>
 {# block used for footer #}
 {% block footer%}
+
+
         <footer>
-            <script type="text/javascript" src="{% static "jquery/jquery.min.js" %}"></script>
-            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
-            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
-            <hr>
+        <hr>
             <div class="d-flex justify-content-center bd-highlight mb-3">
                 <a href="{% url 'mention' %}"><button type="button" class="btn" >Mentions Légales</button></a>
                 <a href="{% url 'accueil' %}"><button type="button" class="btn">Contact us</button></a>

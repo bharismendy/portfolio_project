@@ -8,7 +8,7 @@
         {% if user.personne.avatar %}
             <img src="{{ request.user.personne.avatar.url }}" alt="avatar" height="150">
         {% endif %}
-        <form method="POST" class="pt-5" action={% url 'utilisateur/dashboard' %} enctype="multipart/form-data">
+        <form method="POST" class="pt-5" action={% url 'account' %} enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form_edit_utilisateur.visible_fields %}
 
@@ -27,7 +27,7 @@
             {% endfor %}
          <button class="btn btn-success default-primary-color float-right" name="btn-update-profil" type="submit">Save my profile</button>
         </form>
-         <form method="post" class="margin_5" action="{% url 'utilisateur/dashboard' %}">
+         <form method="post" class="margin_5" action="{% url 'account' %}">
             {%  csrf_token %}
             {% for field in form_edit_password.visible_fields %}
                 <div class="row form-group">
@@ -61,8 +61,8 @@
                   {% for article in list_of_article %}
                     <tr>
                       <th>{{ article.titre }}</th>
-                      <td>{{ article.formatted_resume_markdown| safe | slice:":70"  }}</td>
-                      <td><a href="{% url 'article/affichage' id_article=article.id %}">accèder</a></td>
+                      <td>{{ article.description | slice:":70"  }}</td>
+                      <td><a href="{% url 'accueil' id_projet=article.id %}">accèder</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>
