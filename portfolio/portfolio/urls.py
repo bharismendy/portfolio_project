@@ -22,4 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('common.url_common')),
     path('utilisateur/', include('utilisateur.url_utilisateur')),
+    path('categorie/', include('categorie.url_categorie')),
+    path('administration/', include('administration.url_administration')),
+    path('article/', include('article.url_article')),
+    path('markdownx/', include('markdownx.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

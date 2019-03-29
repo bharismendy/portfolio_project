@@ -1,0 +1,3 @@
+from categorie.forms.new_categorie_niv1 import NewCategorieNiv1
+from categorie.forms.new_categorie_niv2 import NewCategorieNiv2
+from categorie.forms.new_categorie_niv3 import NewCategorieNiv3
