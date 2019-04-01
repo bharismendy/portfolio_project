@@ -5,10 +5,11 @@ from django.urls import reverse
 
 def new_article(request):
     if request.method == "POST":
-        form_article = EditArticle(request.POST)
+        form_article = EditArticle(request.POST, request.FILES)
         if form_article.is_valid():
             form_article.save(user=request.user.personne)
             return redirect(reverse('accueil'))
     else:
         form_article = EditArticle()
     return render(request, 'articles/article_edit.html', {'form_article': form_article})
+

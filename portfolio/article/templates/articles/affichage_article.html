@@ -6,7 +6,7 @@
                 {% if user.is_superuser or user.personne == article.personne %}
                     <div class="text-right">
                         <hr>
-                            <a class="btn btn-dark" href="#">Editer l'article</a>
+                            <a class="btn btn-dark" href="{% url "article/edition" id_article=article.id %}">Editer l'article</a>
                         <hr>
                     </div>
                 {% endif %}
