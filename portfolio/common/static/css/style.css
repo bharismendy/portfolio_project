@@ -32,3 +32,16 @@ textarea{
     .navbar-hover .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
     /*.navbar-hover .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}*/
 }
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+h2, p{
+     word-wrap: break-word;
+}
+#wrapper {
+  text-align: center;
+}
+#page_selector {
+  display: inline-block;
+}

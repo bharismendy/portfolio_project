@@ -1,0 +1,47 @@
+{% extends 'base_admin.html' %}
+{% block content %}
+    <div class="container" >
+        <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">date</th>
+                            <th scope="col">titre</th>
+                            <th scope="col">accès</th>
+                            <th scope="col">publié</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in list_article %}
+                        <tr>
+                            <th scope="row">{{ article.id }}</th>
+                            <th scope="row">{{ article.date }}</th>
+                            <td>{{ article.titre }}</td>
+                            <td>
+                                <a href="{% url "article/affichage" id_article=article.id %}" class="btn btn-dark">voir l'article
+                                    <svg class="feather feather-arrow-right-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                </a>
+                            </td>
+                            <td>
+                                <form class="form" method="post" action="{% url 'administration/gestion_article/switch_publish' id_article=article.id %}">
+                                    {% csrf_token %}
+                                    <div class="btn-group btn-toggle">
+                                        {% if article.publish %}
+                                            <button class="btn btn-xs btn-secondary active" name="publish" value="True" >publié</button>
+                                            <button class="btn btn-xs btn-secondary" name="publish" value="False" >non publié</button>
+                                        {% else %}
+                                            <button class="btn btn-xs btn-secondary" name="publish" value="True" >publié</button>
+                                            <button class="btn btn-xs btn-secondary active" name="publish" value="False" >non publié</button>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

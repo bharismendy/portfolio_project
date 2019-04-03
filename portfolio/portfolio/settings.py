@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'categorie',
     'administration',
     'common',
-    'contact',
-    'media',
     'markdownx',
     'utilisateur'
 ]

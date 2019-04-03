@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from common.lib.context import context_general
 
 
 def mentions(request):
-    return render(request, 'common/mentions.html')
+    context = context_general()
+    return render(request, 'common/mentions.html', context)

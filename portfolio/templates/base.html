@@ -40,13 +40,13 @@
                                                 <ul class="dropdown-menu">
                                                 {% for cat3 in cat_niv_3 %}
                                                     {% if cat3.cat_sup == cat2 %}
-                                                        <li><a class="dropdown-item" href="#">{{ cat3.nom_categorie }}</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=3 id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="#">{{ cat2.nom_categorie }}</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=2 id_cat=cat2.id %}">{{ cat2.nom_categorie }}</a></li>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
@@ -54,7 +54,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'accueil' %}">{{ cat1.nom_categorie }}</a>
+                            <a class="nav-link" href="{% url 'article/list_by_cat' niv_cat=1 id_cat=cat1.id %}">{{ cat1.nom_categorie }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -62,6 +62,9 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right navbar-fixed-top">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'article/search' %}">Rechercher</a>
+                </li>
                 {% if user.is_superuser %}
                     <li class="nav-item">
                         <a href="{% url 'administration/admin_panel' %}" class="nav-link">Admin Panel</a>
@@ -76,7 +79,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{% url 'accueil' %}" class="nav-link">Déconnexion</a>
+                        <a href="{% url 'utilisateur/deconnexion' %}" class="nav-link">Déconnexion</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
@@ -103,7 +106,8 @@
     <div class="container vertical-center" >
         <div class="row">
             {% for article in articles %}
-                <div class="col-lg-4 text-center margin_5">
+                {% if article.publish %}
+                    <div class="col-lg-4 text-center margin_5">
                 {% if article.image %}
                     <img class="rounded-circle" src="{{ article.image.url }}" alt="Photo d'entête de l'article" width="140" height="140">
                 {% else %}
@@ -115,24 +119,54 @@
                         </p>
                     <p><a href="{% url 'article/affichage' id_article=article.id %} "><button class="btn btn-dark" role="button"> Voir plus »</button></a></p>
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
+    {% if articles.has_other_pages %}
+    <div id="wrapper" class="mt-5">
+        <div id="page_selector" >
+            <nav aria-label="Page pagination example">
+                <ul class="pagination">
+                {% if articles.has_previous %}
+                    <li class="page-item"><a href="?page={{ articles.previous_page_number }}" class="page-link" aria-label="Previous">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in articles.paginator.page_range %}
+                    {% if articles.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li  class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if articles.has_next %}
+                    <li class="page-item"><a href="?page={{ articles.next_page_number }}" class="page-link">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endif %}
 {% endblock %}
     </div>
 </main>
+{% block script %}
+    <script type="text/javascript" src="{% static "jquery/jquery.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
+{% endblock %}
 {# block used for footer #}
 {% block footer%}
 
         <footer>
-            <script type="text/javascript" src="{% static "jquery/jquery.min.js" %}"></script>
-            <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
-            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
-            <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
             <hr>
             <div class="d-flex justify-content-center bd-highlight mb-3">
                 <a href="{% url 'mention' %}"><button type="button" class="btn" >Mentions Légales</button></a>
-                <a href="{% url 'accueil' %}"><button type="button" class="btn">Contact us</button></a>
+                <a href="mailto:briceharismendy@gmail.com"><button type="button" class="btn">Contact me</button></a>
             </div>
 
         </footer>

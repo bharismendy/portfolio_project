@@ -10,11 +10,13 @@
                         <hr>
                     </div>
                 {% endif %}
+                <div class="text-center">
                 {% if article.image %}
-                    <img class="img-circle" src="{{ article.image.url }}" alt="Photo de l'article" width="140" height="140">
+                    <img class="rounded-circle float-left" src="{{ article.image.url }}" alt="Photo de l'article" width="140" height="140">
                 {% endif %}
                     <h1>{{ article.titre }}</h1>
-                    <article class="text-justify">
+                </div>
+                    <article class="text-justify mt-5">
                         {{ article.formatted_content_markdown |safe }}
                     </article>
             </div>

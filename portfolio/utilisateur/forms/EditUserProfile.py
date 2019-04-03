@@ -8,7 +8,7 @@ class EditUserProfile(forms.Form):
         try:
             self.user = user
         except Exception as error:
-            self.user=None
+            self.user = None
             print(error)
         super(EditUserProfile, self).__init__(*args, **kwargs)
         first_name = None

@@ -1,6 +1,7 @@
 from article.forms import EditArticle
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from common.lib.context import context_general
 
 
 def new_article(request):
@@ -11,5 +12,8 @@ def new_article(request):
             return redirect(reverse('accueil'))
     else:
         form_article = EditArticle()
-    return render(request, 'articles/article_edit.html', {'form_article': form_article})
+
+    context = {'form_article': form_article}
+    context.update(context_general())
+    return render(request, 'articles/article_new.html', context)
 

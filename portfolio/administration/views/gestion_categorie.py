@@ -12,3 +12,4 @@ def gestion_cat(request):
                'form_cat_niv_3': form_ncn_3}
     context.update(context_general())
     return render(request, 'administration/gestion_categorie.html', context)
+

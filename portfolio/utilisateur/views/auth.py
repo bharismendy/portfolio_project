@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from utilisateur.forms.LoginForm import LoginForm
 from utilisateur.forms.SignUpForm import SignUpForm
+from common.lib.context import context_general
 
 
 def auth(request):
@@ -36,7 +37,9 @@ def auth(request):
 
     else:
         register_form = SignUpForm()
-    return render(request, "utilisateur/auth.html", {'register_form': register_form,
-                                                     'login_form': login_form,
-                                                     'error_login': error_login,
-                                                     'error_register': error_register})
+
+    context = {'register_form': register_form, 'login_form': login_form, 'error_login': error_login,
+               'error_register': error_register}
+    context.update(context_general())
+
+    return render(request, "utilisateur/auth.html", context)

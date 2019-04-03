@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from utilisateur.models import Personne
 from utilisateur.forms import EditUserProfile
 from article.models import Article
+from common.lib.context import context_general
 
 
 @login_required
@@ -39,6 +40,7 @@ def account(request):
     # récupération de l'historique des evalutation et le karma
     list_of_article = Article.objects.filter(personne=request.user.personne)
 
-    return render(request, 'utilisateur/profil.html', {'form_edit_utilisateur': form_edit_utilisateur,
-                                                       'form_edit_password': form_edit_password,
-                                                       'list_of_article': list_of_article})
+    context = {'form_edit_utilisateur': form_edit_utilisateur, 'form_edit_password': form_edit_password,
+               'list_of_article': list_of_article}
+    context.update(context_general())
+    return render(request, 'utilisateur/profil.html', context)

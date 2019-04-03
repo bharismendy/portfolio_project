@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('resume', models.CharField(default=None, max_length=200)),
                 ('titre', models.CharField(default=None, max_length=100)),
                 ('content', markdownx.models.MarkdownxField()),
-                ('image', models.ImageField(blank=True, null=True, upload_to='image_projet/')),
+                ('image', models.ImageField(blank=True, null=True, upload_to='image_article/')),
                 ('categorie_niv1', models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='categorie.CategorieNiv1')),
                 ('categorie_niv2', models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='categorie.CategorieNiv2')),
                 ('categorie_niv3', models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='categorie.CategorieNiv3')),

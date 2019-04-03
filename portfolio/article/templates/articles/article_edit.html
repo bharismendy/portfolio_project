@@ -2,25 +2,29 @@
 
 {% block content %}
     <div class="container" >
-            <div class="row">
-                <div class="col col-lg-12" id="form_sign_in">
-                    <form method="POST" enctype="multipart/form-data" action={% url 'article/new_article' %}>
-                        {% csrf_token %}
-                        {% for field in form_article.visible_fields %}
-                            <div class="row form-group">
-                                <div class="col-lg-4">
-                                    {{ field.label_tag }}
-                                </div>
-                                <div class="col-lg-7">
-                                    {{ field }}
-                                    {{ field.help_text }}
-                                </div>
+        <div class="row">
+            <div class="col col-lg-12" id="form_sign_in">
+                <form method="POST" enctype="multipart/form-data" action={% url 'article/edition' id_article=id_article%}>
+                    {% csrf_token %}
+                    {% for field in form_article.visible_fields %}
+                        <div class="row form-group">
+                            <div class="col-lg-4">
+                                {{ field.label_tag }}
                             </div>
-                        {% endfor %}
-                        <button class="btn btn-success default-primary-color" type="submit">Enregistrer l'article</button>
-                    </form>
-                {{ form_article.media }}
-                </div>
+                            <div class="col-lg-7">
+                                {{ field }}
+                                {{ field.help_text }}
+                                {% if form.errors %}
+                                    Les erreurs suivantes sont survenues:
+                                    {{ form.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button class="btn btn-success default-primary-color" type="submit">Enregistrer l'article</button>
+                </form>
+            {{ form_article.media }}
             </div>
+        </div>
     </div>
 {% endblock %}

@@ -25,7 +25,7 @@
                     </div>
                 </div>
             {% endfor %}
-         <button class="btn btn-success default-primary-color float-right" name="btn-update-profil" type="submit">Save my profile</button>
+            <button class="btn btn-success default-primary-color float-right" name="btn-update-profil" type="submit">Save my profile</button>
         </form>
          <form method="post" class="margin_5" action="{% url 'utilisateur/dashboard' %}">
             {%  csrf_token %}
@@ -50,22 +50,28 @@
             <div class="row">
                 <div class="col-md-10  col-md-offset-2 margin_5">
                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Titre de l'article</th>
-                      <th scope="col">Contenu</th>
-                      <th scope="col">lien</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {% for article in list_of_article %}
-                    <tr>
-                      <th>{{ article.titre }}</th>
-                      <td>{{ article.formatted_resume_markdown| safe | slice:":70"  }}</td>
-                      <td><a href="{% url 'article/affichage' id_article=article.id %}">accèder</a></td>
-                    </tr>
-                  {% endfor %}
-                  </tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">date</th>
+                            <th scope="col">titre</th>
+                            <th scope="col">accès</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in list_of_article %}
+                        <tr>
+                            <th scope="row">{{ article.id }}</th>
+                            <th scope="row">{{ article.date }}</th>
+                            <td>{{ article.titre }}</td>
+                            <td>
+                                <a href="{% url "article/affichage" id_article=article.id %}" class="btn btn-dark">voir l'article
+                                    <svg class="feather feather-arrow-right-circle sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>

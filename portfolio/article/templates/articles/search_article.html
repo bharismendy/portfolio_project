@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block head_content %}
+    <main role="main">
+        <div class="jumbotron mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                            <form method='GET' action="{% url 'article/search' %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    {% for field in form_search.visible_fields %}
+                                            {{ field }}
+                                            {{ field.help_text }}
+                                    {% endfor %}
+
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary">
+                                            <svg class="feather feather-search sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
+                                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-reactid="1051">
+                                                <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                            </svg>
+                                            Chercher
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
