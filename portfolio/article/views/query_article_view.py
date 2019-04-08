@@ -6,6 +6,13 @@ from article.forms import RechercheArt
 
 
 def query_cat(request, niv_cat, id_cat):
+    """
+    views to query a category
+    :param request: environement variable
+    :param niv_cat: level of a category
+    :param id_cat: id of the category
+    :return: template listing accurate category
+    """
     list_of_article = None
     if niv_cat == 1:
         list_of_article = Article.objects.filter(categorie_niv1=id_cat).order_by('id')
@@ -13,6 +20,8 @@ def query_cat(request, niv_cat, id_cat):
         list_of_article = Article.objects.filter(categorie_niv2=id_cat).order_by('id')
     if niv_cat == 3:
         list_of_article = Article.objects.filter(categorie_niv3=id_cat).order_by('id')
+    if niv_cat == 4:
+        list_of_article = Article.objects.filter(categorie_niv4=id_cat).order_by('id')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)
@@ -30,24 +39,29 @@ def query_cat(request, niv_cat, id_cat):
 
 
 def query_art(request):
-    form_search = RechercheArt()
+    """
+    views to query a list of article
+    :param request: environement variable
+    :return: template listing accurate article paginate
+    """
+    form_search = RechercheArt(request.GET)
     search_content = request.GET.get('search_field', None)
     search_type = request.GET.get('choice_field', None)
-    list_of_article = None
-    if search_type == "titre":
+    if search_type == "Titre":
         list_of_article = Article.objects.filter(titre__contains=search_content).order_by('date')
-    elif search_type == "resume":
+    elif search_type == "Resume":
         list_of_article = Article.objects.filter(resume__contains=search_content).order_by('date')
-    elif search_type == "contenu":
+    elif search_type == "Contenu":
         list_of_article = Article.objects.filter(contenu__contains=search_content).order_by('date')
-    elif search_type == "tout":
+    elif search_type == "Tout":
         list_of_article = Article.objects.filter(titre__contains=search_content) | \
                           Article.objects.filter(content__contains=search_content).order_by('date') | \
                           Article.objects.filter(resume__contains=search_content).order_by('date')
         list_of_article = list_of_article.order_by('date')
-
+    elif not search_content or not search_type:
+        list_of_article = Article.objects.all().order_by('id')
     else:
-        pass#list_of_article = Article.objects.all().order_by('id')
+        list_of_article = Article.objects.all().order_by('id')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)

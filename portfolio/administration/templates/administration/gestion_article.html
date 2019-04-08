@@ -43,5 +43,33 @@
                 </table>
             </div>
         </div>
+        {% if list_article.has_other_pages %}
+            <div id="wrapper" class="mt-5">
+                <div id="page_selector" >
+                    <nav aria-label="Page pagination example">
+                        <ul class="pagination">
+                        {% if list_article.has_previous %}
+                            <li class="page-item"><a href="?page={{ list_article.previous_page_number }}" class="page-link" aria-label="Previous">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+                        {% endif %}
+                        {% for i in list_article.paginator.page_range %}
+                            {% if articles.number == i %}
+                                <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li  class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if list_article.has_next %}
+                            <li class="page-item"><a href="?page={{ list_article.next_page_number }}" class="page-link">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        {% endif %}
     </div>
+
 {% endblock %}

@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
 class Personne(models.Model):
+    """class to define the model"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)  # La liaison OneToOne vers le modèle User
     age = models.IntegerField(null=False, default=0)
     site_web = models.URLField(blank=True)

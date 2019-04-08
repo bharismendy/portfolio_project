@@ -7,7 +7,8 @@ class ChangePassword(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ChangePassword, self).__init__(*args, **kwargs)
         self.fields['password'] = forms.CharField(label='password * ', required=False, widget=forms.PasswordInput)
-        self.fields['password2'] = forms.CharField(label='Confirm password * ', required=False, widget=forms.PasswordInput)
+        self.fields['password2'] = forms.CharField(label='Confirm password * ', required=False,
+                                                   widget=forms.PasswordInput)
 
     class Meta:
         model = User

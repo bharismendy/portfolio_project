@@ -40,7 +40,19 @@
                                                 <ul class="dropdown-menu">
                                                 {% for cat3 in cat_niv_3 %}
                                                     {% if cat3.cat_sup == cat2 %}
-                                                        <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=3 id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
+                                                        {% if cat3.has_sub %}
+                                                            <li><a class="dropdown-item dropdown-toggle" href="#">{{ cat2.nom_categorie }}</a>
+                                                                    <ul class="dropdown-menu">
+                                                                    {% for cat4 in cat_niv_4 %}
+                                                                        {% if cat4.cat_sup == cat3 %}
+                                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=4 id_cat=cat4.id %}">{{ cat4.nom_categorie }}</a></li>
+                                                                        {% endif %}
+                                                                        </ul>
+                                                                    </li>
+                                                                    {% endfor %}
+                                                        {% else %}
+                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=3 id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>
@@ -58,7 +70,11 @@
                         </li>
                     {% endif %}
                 {% endfor %}
-                    </ul>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_me' %}">Á propos de moi</a>
+                    </li>
+                </ul>
             </div>
 
             <ul class="nav navbar-nav navbar-right navbar-fixed-top">
@@ -124,32 +140,32 @@
         </div>
     </div>
     {% if articles.has_other_pages %}
-    <div id="wrapper" class="mt-5">
-        <div id="page_selector" >
-            <nav aria-label="Page pagination example">
-                <ul class="pagination">
-                {% if articles.has_previous %}
-                    <li class="page-item"><a href="?page={{ articles.previous_page_number }}" class="page-link" aria-label="Previous">&laquo;</a></li>
-                {% else %}
-                    <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
-                {% endif %}
-                {% for i in articles.paginator.page_range %}
-                    {% if articles.number == i %}
-                        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+        <div id="wrapper" class="mt-5">
+            <div id="page_selector" >
+                <nav aria-label="Page pagination example">
+                    <ul class="pagination">
+                    {% if articles.has_previous %}
+                        <li class="page-item"><a href="?page={{ articles.previous_page_number }}" class="page-link" aria-label="Previous">&laquo;</a></li>
                     {% else %}
-                        <li  class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
                     {% endif %}
-                {% endfor %}
-                {% if articles.has_next %}
-                    <li class="page-item"><a href="?page={{ articles.next_page_number }}" class="page-link">&raquo;</a></li>
-                {% else %}
-                    <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
-                {% endif %}
-                </ul>
-            </nav>
+                    {% for i in articles.paginator.page_range %}
+                        {% if articles.number == i %}
+                            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                            <li  class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if articles.has_next %}
+                        <li class="page-item"><a href="?page={{ articles.next_page_number }}" class="page-link">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled page-item"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </div>
-{% endif %}
+    {% endif %}
 {% endblock %}
     </div>
 </main>

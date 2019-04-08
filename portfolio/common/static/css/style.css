@@ -45,3 +45,7 @@ h2, p{
 #page_selector {
   display: inline-block;
 }
+.affix{
+    position: fixed;
+    right: 5%;
+}

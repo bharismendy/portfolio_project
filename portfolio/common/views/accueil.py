@@ -5,6 +5,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def accueil(request):
+    """
+    view to display the root template
+    :param request:environement variable
+    :return: template of the root page
+    """
     list_of_article = Article.objects.all().order_by('id')
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)
@@ -18,5 +23,3 @@ def accueil(request):
     context = {'articles': articles}
     context.update(context_general())
     return render(request, 'common/accueil.html', context)
-
-

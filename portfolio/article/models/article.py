@@ -2,15 +2,17 @@ from django.db import models
 from utilisateur.models import Personne
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
-from categorie.models import CategorieNiv1, CategorieNiv2, CategorieNiv3
+from categorie.models import CategorieNiv1, CategorieNiv2, CategorieNiv3, CategorieNiv4
 import datetime
 
 
 class Article (models.Model):
+    """model of the article """
     personne = models.ForeignKey(Personne, on_delete=models.CASCADE)
     categorie_niv1 = models.ForeignKey(CategorieNiv1, on_delete=models.CASCADE, default=None, null=True)
     categorie_niv2 = models.ForeignKey(CategorieNiv2, on_delete=models.CASCADE, blank=True, default=None, null=True)
     categorie_niv3 = models.ForeignKey(CategorieNiv3, on_delete=models.CASCADE, blank=True, default=None, null=True)
+    categorie_niv4 = models.ForeignKey(CategorieNiv4, on_delete=models.CASCADE, blank=True, default=None, null=True)
     image = models.ImageField(null=True, blank=True, upload_to="image_article/")
     date = models.DateField(null=False, default=datetime.date.today)
     publish = models.BooleanField(default=False)

@@ -138,3 +138,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_storage')
 # coold be used
 SITE_URL = 'http://127.0.0.1'
 SITE_PORT = '8000'
+LOGIN_URL = '/utilisateur/auth/'

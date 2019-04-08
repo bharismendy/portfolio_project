@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block content %}
+{% block content %}{% comment %}
     <div class="container center_auth" >
             <div class="row" id="content_sign_in_up">
                 <div class="col col-lg-6" id="form_sign_in">
@@ -53,6 +53,31 @@
                     </form>
                 </div>
             </div>
+        </div>{% endcomment %}
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+            <form method="POST" class="center_auth" action={% url 'auth' %}>
+                <h4 class="text-center mb-5">Sign In</h4>
+                {% if error_login %}
+                    <p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    Vous êtes connecté, {{ user.username }} !
+                {% else %}
+                    {% csrf_token %}
+                    {% for field in login_form.visible_fields %}
+                        <div class="row form-group">
+                            <div class="col-lg-5">
+                                {{ field.label_tag }}
+                            </div>
+                            <div class="col-lg-6">
+                              {{ field }}
+                              {{ field.help_text }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button class="btn btn-success default-primary-color " name="btn-login" type="submit">Sign In</button>
+                {% endif %}
+            </form>
         </div>
 {% endblock %}
 {% block footer %}

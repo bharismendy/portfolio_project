@@ -2,7 +2,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from utilisateur.forms.LoginForm import LoginForm
-from utilisateur.forms.SignUpForm import SignUpForm
 from common.lib.context import context_general
 
 
@@ -27,7 +26,7 @@ def auth(request):
                 error_login = True
     else:
         login_form = LoginForm()
-
+    """
     if request.method == 'POST' and 'btn-register' in request.POST:
         register_form = SignUpForm(request.POST)
         if register_form.is_valid():
@@ -37,8 +36,10 @@ def auth(request):
 
     else:
         register_form = SignUpForm()
-
-    context = {'register_form': register_form, 'login_form': login_form, 'error_login': error_login,
+    """
+    context = {  # 'register_form': register_form,
+               'login_form': login_form,
+               'error_login': error_login,
                'error_register': error_register}
     context.update(context_general())
 

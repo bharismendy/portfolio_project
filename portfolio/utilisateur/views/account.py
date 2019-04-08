@@ -16,7 +16,6 @@ def account(request):
     :param request: variable wich contains the value of the page
     :return: template html
     """
-
     try:
         test = Personne.objects.get(user=request.user)  # on tente de récupérer le one to one field Personne
     except ObjectDoesNotExist:

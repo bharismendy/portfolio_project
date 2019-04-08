@@ -25,6 +25,9 @@
                                     </span>
                                 </div>
                             </form>
+                        {% if not articles %}
+                            <div class="text-center mt-5"><p><u><em>No result found</em></u></p></div>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
