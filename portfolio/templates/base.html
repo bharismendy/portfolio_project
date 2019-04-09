@@ -113,7 +113,7 @@
 </header>
 {% endblock %}
 {% block head_content %}
-    <main role="main">
+    <main>
     <div class="jumbotron">
 {% endblock %}
 {% block nav_admin %}
@@ -170,10 +170,10 @@
     </div>
 </main>
 {% block script %}
-    <script type="text/javascript" src="{% static "jquery/jquery.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
-    <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
+    <script src="{% static "jquery/jquery.min.js" %}"></script>
+    <script src="{% static "js/menu.js" %}"></script>
+    <script src="{% static "bootstrap-4.3.1-dist/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "bootstrap-4.3.1-dist/js/popper.min.js" %}"></script>
 {% endblock %}
 {# block used for footer #}
 {% block footer%}
@@ -181,8 +181,8 @@
         <footer>
             <hr>
             <div class="d-flex justify-content-center bd-highlight mb-3">
-                <a href="{% url 'mention' %}"><button type="button" class="btn" >Mentions Légales</button></a>
-                <a href="mailto:briceharismendy@gmail.com"><button type="button" class="btn">Contact me</button></a>
+                <a href="{% url 'mention' %}" class="btn" >Mentions Légales</a>
+                <a href="mailto:briceharismendy@gmail.com" class="btn">Contact me</a>
             </div>
 
         </footer>

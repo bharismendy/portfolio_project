@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login
 from utilisateur.forms.LoginForm import LoginForm
 from common.lib.context import context_general
 
-
 def auth(request):
     """
     controler that allow the user to login or register on the web site

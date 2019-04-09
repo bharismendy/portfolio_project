@@ -81,4 +81,82 @@
         </div>
     </form>
 
+    <h1>Catégorie niveau 1</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom catégorie</th>
+            <th scope="col">Nom catégorie supérieur</th>
+            <th scope="col">A catégorie inférieur ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat1 in cat_niv_1 %}
+            <tr>
+                <td>{{ cat1.nom_categorie }}</td>
+                <td>{{ cat1.cat_sup.nom_categorie | default:"N/A" }}</td>
+                <td>{{ cat1.has_sub | default:"False" }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h1>Catégorie niveau 2</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom catégorie</th>
+            <th scope="col">Nom catégorie supérieur</th>
+            <th scope="col">A catégorie inférieur ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat2 in cat_niv_2 %}
+            <tr>
+                <td>{{ cat2.nom_categorie }}</td>
+                <td>{{ cat2.cat_sup.nom_categorie | default:"N/A" }}</td>
+                <td>{{ cat2.has_sub | default:"False" }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h1>Catégorie niveau 3</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom catégorie</th>
+            <th scope="col">Nom catégorie supérieur</th>
+            <th scope="col">A catégorie inférieur ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat3 in cat_niv_3 %}
+            <tr>
+                <td>{{ cat3.nom_categorie }}</td>
+                <td>{{ cat3.cat_sup.nom_categorie | default:"N/A" }}</td>
+                <td>{{ cat3.has_sub | default:"False" }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Catégorie niveau 4</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom catégorie</th>
+            <th scope="col">Nom catégorie supérieur</th>
+            <th scope="col">A catégorie inférieur ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cat4 in cat_niv_4 %}
+            <tr>
+                <td>{{ cat4.nom_categorie }}</td>
+                <td>{{ cat4.cat_sup.nom_categorie | default:"N/A" }}</td>
+                <td>{{ cat4.has_sub | default:"False" }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

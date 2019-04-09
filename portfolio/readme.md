@@ -28,4 +28,7 @@ Puis nous installons l'ensemble des paquets :
     pytz==2018.5
 
 
-il nous faut ensuite créer l'utilisateur en base de donnée :
+    apt-get -y install libz-dev libjpeg-dev libfreetype6-dev python-dev
+
+### Source 
+* https://django-simple-captcha.readthedocs.io/en/latest/usage.html

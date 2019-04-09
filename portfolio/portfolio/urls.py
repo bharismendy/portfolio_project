@@ -26,4 +26,5 @@ urlpatterns = [
     path('administration/', include('administration.url_administration')),
     path('article/', include('article.url_article')),
     path('markdownx/', include('markdownx.urls')),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
