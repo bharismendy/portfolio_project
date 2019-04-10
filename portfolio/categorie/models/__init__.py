@@ -1,4 +1,1 @@
-from .categorie_niv_1 import CategorieNiv1
-from .categorie_niv_2 import CategorieNiv2
-from .categorie_niv_3 import CategorieNiv3
-from .categorie_niv_4 import CategorieNiv4
+from .categorie_model import Categorie

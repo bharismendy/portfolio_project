@@ -3,9 +3,9 @@
 {% block content %}
     <h2><u>Ajout des catégories</u></h2>
     <h4 class="mt-5"><u>Catégorie de niveau 1</u></h4>
-    <form method="POST" action={% url 'categorie/new_cat_1' %}>
+    <form method="POST" action={% url 'categorie/new_cat' %}>
         {% csrf_token %}
-        {% for field in form_cat_niv_1.visible_fields %}
+        {% for field in form_cat.visible_fields %}
             <div class="row form-group">
                 <div class="col-lg-4">
                     {{ field.label_tag }}
@@ -21,66 +21,8 @@
         </div>
     </form>
 
-    <h4><u>Catégorie de niveau 2</u></h4>
 
-    <form method="POST" action={% url 'categorie/new_cat_2' %}>
-        {% csrf_token %}
-        {% for field in form_cat_niv_2.visible_fields %}
-            <div class="row form-group">
-                <div class="col-lg-4">
-                    {{ field.label_tag }}
-                </div>
-                <div class="col-lg-7">
-                    {{ field }}
-                    {{ field.help_text }}
-                </div>
-            </div>
-        {% endfor %}
-        <div class="text-right">
-            <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
-        </div>
-    </form>
-
-    <h4><u>Catégorie de niveau 3</u></h4>
-
-    <form method="POST" action={% url 'categorie/new_cat_3' %}>
-        {% csrf_token %}
-        {% for field in form_cat_niv_3.visible_fields %}
-            <div class="row form-group">
-                <div class="col-lg-4">
-                    {{ field.label_tag }}
-                </div>
-                <div class="col-lg-7">
-                    {{ field }}
-                    {{ field.help_text }}
-                </div>
-            </div>
-        {% endfor %}
-        <div class="text-right">
-            <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
-        </div>
-    </form>
-
-    <h4><u>Catégorie de niveau 4</u></h4>
-
-    <form method="POST" action={% url 'categorie/new_cat_4' %}>
-        {% csrf_token %}
-        {% for field in form_cat_niv_4.visible_fields %}
-            <div class="row form-group">
-                <div class="col-lg-4">
-                    {{ field.label_tag }}
-                </div>
-                <div class="col-lg-7">
-                    {{ field }}
-                    {{ field.help_text }}
-                </div>
-            </div>
-        {% endfor %}
-        <div class="text-right">
-            <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
-        </div>
-    </form>
-
+{% comment %}
     <h1>Catégorie niveau 1</h1>
 <table class="table">
     <thead>
@@ -158,5 +100,6 @@
         {% endfor %}
     </tbody>
 </table>
+{% endcomment %}
 
 {% endblock %}

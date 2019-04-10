@@ -13,15 +13,7 @@ def query_cat(request, niv_cat, id_cat):
     :param id_cat: id of the category
     :return: template listing accurate category
     """
-    list_of_article = None
-    if niv_cat == 1:
-        list_of_article = Article.objects.filter(categorie_niv1=id_cat).order_by('id')
-    if niv_cat == 2:
-        list_of_article = Article.objects.filter(categorie_niv2=id_cat).order_by('id')
-    if niv_cat == 3:
-        list_of_article = Article.objects.filter(categorie_niv3=id_cat).order_by('id')
-    if niv_cat == 4:
-        list_of_article = Article.objects.filter(categorie_niv4=id_cat).order_by('id')
+    list_of_article = Article.objects.filter(categorie=id_cat).order_by('id')
 
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)

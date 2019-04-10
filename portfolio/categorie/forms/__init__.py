@@ -1,4 +1,1 @@
-from categorie.forms.categorie_niv1_form import NewCategorieNiv1
-from categorie.forms.categorie_niv2_form import NewCategorieNiv2
-from categorie.forms.categorie_niv3_form import NewCategorieNiv3
-from categorie.forms.categorie_niv4_form import NewCategorieNiv4
+from categorie.forms.categorie_form import CategorieForm
