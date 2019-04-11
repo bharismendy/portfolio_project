@@ -16,7 +16,7 @@ def new_article(request):
         form_article = EditArticle(request.POST, request.FILES)
         if form_article.is_valid():
             form_article.save(user=request.user.personne)
-            return redirect(reverse('accueil'))
+            return redirect(reverse('administration/gestion_article'))
     else:
         form_article = EditArticle()
 

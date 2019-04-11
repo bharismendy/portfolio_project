@@ -8,6 +8,6 @@ class RechercheArt(forms.Form):
     choice_field = forms.ChoiceField(choices=(('Tout', 'Tout'),
                                               ('Titre', 'Titre'),
                                               ('contenu', 'Contenu'),
-                                              ('Resume', 'Resume')),
+                                              ('Resume', 'Resumé')),
                                      widget=forms.Select(
                                          attrs={'class': 'custom-select mb-2 mr-sm-2 mb-sm-0  col-lg-2'}))

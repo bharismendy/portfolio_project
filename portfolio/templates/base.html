@@ -8,6 +8,7 @@
 <html lang="fr">
 <head>
     <!-- Chargement du CSS, bootstrap, javascript et jQuery -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <link type="text/css" media="all" href="{% static "bootstrap-4.3.1-dist/css/bootstrap.min.css" %}" rel="stylesheet"/>
     <link type="text/css" media="all" href="{% static "css/style.css" %}" rel="stylesheet"/>
     <title>Portefeuille de compétence de Brice Harismendy</title>
@@ -17,13 +18,12 @@
 
 {% block nav %}
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand" href="{% url 'accueil' %}">Brice Harismendy</a>
-        <button class="navbar-toggler" type="button">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accueil' %}">Accueil</a>
@@ -41,15 +41,15 @@
                                                 {% for cat3 in cat_niv_3 %}
                                                     {% if cat3.cat_sup == cat2 %}
                                                         {% if cat3.has_sub %}
-                                                            <li><a class="dropdown-item dropdown-toggle" href="#">{{ cat2.nom_categorie }}</a>
-                                                                    <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item dropdown-toggle" href="#">{{ cat3.nom_categorie }}</a>
+                                                                <ul class="dropdown-menu">
                                                                     {% for cat4 in cat_niv_4 %}
                                                                         {% if cat4.cat_sup == cat3 %}
                                                                              <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=4 id_cat=cat4.id %}">{{ cat4.nom_categorie }}</a></li>
                                                                         {% endif %}
-                                                                        </ul>
-                                                                    </li>
                                                                     {% endfor %}
+                                                                </ul>
+                                                            </li>
                                                         {% else %}
                                                              <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=3 id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
                                                         {% endif %}
@@ -74,7 +74,6 @@
                         <a class="nav-link" href="{% url 'about_me' %}">Á propos de moi</a>
                     </li>
                 </ul>
-            </div>
 
             <ul class="nav navbar-nav navbar-right navbar-fixed-top">
                 <li class="nav-item">
@@ -102,13 +101,6 @@
                     </li>
                 {% endif %}
             </ul>
-
-
-            <!--
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>-->
         </div>
     </nav>
 </header>

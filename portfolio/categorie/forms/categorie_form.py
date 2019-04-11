@@ -12,7 +12,6 @@ class CategorieForm(forms.ModelForm):
     def save(self, commit=True):
         """used to save the object in DB"""
         cat = super(CategorieForm, self).save(commit=False)
-        cat.has_sub = False
         cat.niv_cat = 1
         if commit:
             cat.save()

@@ -1,105 +1,47 @@
 {% extends 'base_admin.html' %}
 
 {% block content %}
-    <h2><u>Ajout des catégories</u></h2>
-    <h4 class="mt-5"><u>Catégorie de niveau 1</u></h4>
-    <form method="POST" action={% url 'categorie/new_cat' %}>
-        {% csrf_token %}
-        {% for field in form_cat.visible_fields %}
-            <div class="row form-group">
-                <div class="col-lg-4">
-                    {{ field.label_tag }}
+
+    <div class="container" >
+            <h2><u>Ajout des catégories</u></h2>
+            <form method="POST" action={% url 'categorie/new_cat' %}>
+                {% csrf_token %}
+                {% for field in form_cat.visible_fields %}
+                    <div class="row form-group">
+                        <div class="col-lg-4">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="col-lg-7">
+                            {{ field }}
+                            {{ field.help_text }}
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-right">
+                    <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
                 </div>
-                <div class="col-lg-7">
-                    {{ field }}
-                    {{ field.help_text }}
-                </div>
-            </div>
-        {% endfor %}
-        <div class="text-right">
-            <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
+            </form>
+            {% for cat in category %}
+                <h3>Catégorie niveau {{ cat.0.niv_cat }}</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom catégorie</th>
+                            <th scope="col">Nom catégorie supérieur</th>
+                            <th scope="col">A catégorie inférieur ?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cat_s in cat %}
+                            <tr>
+                                <td>{{ cat_s.nom_categorie }}</td>
+                                <td>{{ cat_s.cat_sup.nom_categorie | default:"N/A" }}</td>
+                                <td>{{ cat_s.has_sub | default:"False" }}</td>
+                                <td><a class="btn btn-xs btn-secondary active" href="{% url 'administration/edition_categorie' id_cat=cat_s.id %}">Edit</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
         </div>
-    </form>
-
-
-{% comment %}
-    <h1>Catégorie niveau 1</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nom catégorie</th>
-            <th scope="col">Nom catégorie supérieur</th>
-            <th scope="col">A catégorie inférieur ?</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cat1 in cat_niv_1 %}
-            <tr>
-                <td>{{ cat1.nom_categorie }}</td>
-                <td>{{ cat1.cat_sup.nom_categorie | default:"N/A" }}</td>
-                <td>{{ cat1.has_sub | default:"False" }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<h1>Catégorie niveau 2</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nom catégorie</th>
-            <th scope="col">Nom catégorie supérieur</th>
-            <th scope="col">A catégorie inférieur ?</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cat2 in cat_niv_2 %}
-            <tr>
-                <td>{{ cat2.nom_categorie }}</td>
-                <td>{{ cat2.cat_sup.nom_categorie | default:"N/A" }}</td>
-                <td>{{ cat2.has_sub | default:"False" }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<h1>Catégorie niveau 3</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nom catégorie</th>
-            <th scope="col">Nom catégorie supérieur</th>
-            <th scope="col">A catégorie inférieur ?</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cat3 in cat_niv_3 %}
-            <tr>
-                <td>{{ cat3.nom_categorie }}</td>
-                <td>{{ cat3.cat_sup.nom_categorie | default:"N/A" }}</td>
-                <td>{{ cat3.has_sub | default:"False" }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
-<h1>Catégorie niveau 4</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Nom catégorie</th>
-            <th scope="col">Nom catégorie supérieur</th>
-            <th scope="col">A catégorie inférieur ?</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for cat4 in cat_niv_4 %}
-            <tr>
-                <td>{{ cat4.nom_categorie }}</td>
-                <td>{{ cat4.cat_sup.nom_categorie | default:"N/A" }}</td>
-                <td>{{ cat4.has_sub | default:"False" }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endcomment %}
-
 {% endblock %}

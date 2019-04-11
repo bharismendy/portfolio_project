@@ -22,10 +22,7 @@ class EditArticle(forms.ModelForm):
         art = super(EditArticle, self).save(commit=False)
         art.content = self.cleaned_data['content']
         art.resume = self.cleaned_data['resume']
-        art.categorie_niv1 = self.cleaned_data['categorie_niv1'] or None
-        art.categorie_niv2 = self.cleaned_data['categorie_niv2'] or None
-        art.categorie_niv3 = self.cleaned_data['categorie_niv3'] or None
-        art.categorie_niv4 = self.cleaned_data['categorie_niv4'] or None
+        art.categorie = self.cleaned_data['categorie'] or None
         art.personne = user
         art.titre = self.cleaned_data['titre']
         if commit and user:

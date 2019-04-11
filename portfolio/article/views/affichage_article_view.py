@@ -11,10 +11,7 @@ def affichage_article(request, id_article):
     :param id_article: id of the article to display
     :return: return a template with list of all category and an article if found
     """
-    try:
-        article = get_object_or_404(Article, id=id_article)
-    except():
-        redirect('accueil')
+    article = get_object_or_404(Article, id=id_article)
     context = {'article': article}
     context.update(context_general())
     return render(request, 'articles/affichage_article.html', context)

@@ -32,3 +32,4 @@ Puis nous installons l'ensemble des paquets :
 
 ### Source 
 * https://django-simple-captcha.readthedocs.io/en/latest/usage.html
+* https://medium.com/@harshvb7/using-pytest-to-write-tests-in-django-6783674c55b8

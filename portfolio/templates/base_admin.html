@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 {% block head_content %}
-    <main role="main" class="margin_5">
+    <main role="main">
     <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
 {%  endblock %}
 {% block nav_admin %}
-     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
+     <nav class="navbar navbar-expand-lg d-md-block col-2 col-sm-8 bg-light sidebar">
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_admin"
+             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="feather feather-align-justify sc-iwsKbI cnlcoQ" xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-reactid="66">
+                <line x1="21" y1="10" x2="3" y2="10"></line>
+                <line x1="21" y1="6" x2="3" y2="6"></line>
+                <line x1="21" y1="14" x2="3" y2="14"></line>
+                <line x1="21" y1="18" x2="3" y2="18"></line>
+            </svg>
+     </button>
+      <div class="sidebar-sticky collapse navbar-collapse" id="navbar_admin">
+        <ul class="navbar-nav mr-auto nav">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'administration/admin_panel' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -37,14 +48,20 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url "administration/gestion_article" %}">
-                <svg class="feather feather-file sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-reactid="556"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                <svg class="feather feather-file sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                     data-reactid="556">
+                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                    <polyline points="13 2 13 9 20 9"></polyline>
+                </svg>
                 Gestion des articles
             </a>
           </li>
         </ul>
       </div>
     </nav>
-    <div class="col-md-9 d-none d-md-block bg-light sidebar">
+    <div class="col-9">
 {% endblock %}
 {% block content %}
 {% endblock %}

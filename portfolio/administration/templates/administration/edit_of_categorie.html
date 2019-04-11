@@ -1,0 +1,23 @@
+{% extends 'base_admin.html' %}
+
+{% block content %}
+    <h2><u>Ajout des catégories</u></h2>
+    <form method="POST" action={% url 'administration/edition_categorie' id_cat=id_cat %}>
+        {% csrf_token %}
+        {% for field in form_cat.visible_fields %}
+            <div class="row form-group">
+                <div class="col-lg-4">
+                    {{ field.label_tag }}
+                </div>
+                <div class="col-lg-7">
+                    {{ field }}
+                    {{ field.help_text }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="text-right">
+            <button class="btn btn-success default-primary-color" type="submit">Enregistrer la catégorie</button>
+        </div>
+    </form>
+
+{% endblock %}

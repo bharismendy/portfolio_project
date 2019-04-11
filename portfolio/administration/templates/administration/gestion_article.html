@@ -10,6 +10,7 @@
                             <th scope="col">titre</th>
                             <th scope="col">accès</th>
                             <th scope="col">publié</th>
+                            <th scope="col">Editer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,8 @@
                                     </div>
                                 </form>
                             </td>
+                            <td><a href="{% url 'article/edition' id_article=article.id %}" class="btn btn-xs btn-secondary active">Editer</a></td>
+
                         </tr>
                     {% endfor %}
                     </tbody>

@@ -17,7 +17,7 @@ def account(request):
     :return: template html
     """
     try:
-        test = Personne.objects.get(user=request.user)  # on tente de récupérer le one to one field Personne
+        Personne.objects.get(user=request.user)  # on tente de récupérer le one to one field Personne
     except ObjectDoesNotExist:
         request.user.personne = Personne.objects.create(user=request.user)
 
@@ -39,7 +39,8 @@ def account(request):
     # récupération de l'historique des evalutation et le karma
     list_of_article = Article.objects.filter(personne=request.user.personne)
 
-    context = {'form_edit_utilisateur': form_edit_utilisateur, 'form_edit_password': form_edit_password,
+    context = {'form_edit_utilisateur': form_edit_utilisateur,
+               'form_edit_password': form_edit_password,
                'list_of_article': list_of_article}
     context.update(context_general())
     return render(request, 'utilisateur/profil.html', context)
