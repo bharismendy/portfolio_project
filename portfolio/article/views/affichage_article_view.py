@@ -1,5 +1,5 @@
 from article.models import Article
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from common.lib.context import context_general
 from django.shortcuts import get_object_or_404
 

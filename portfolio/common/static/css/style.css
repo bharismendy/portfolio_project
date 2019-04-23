@@ -1,30 +1,36 @@
 .margin_5{
     margin-top: 5%;
 }
+
 .center{
     align-content : center;
 }
+
 .center_auth {
   position: absolute;
   top: 50%;
   left:50%;
   transform: translate(-50%,-50%);
 }
-pre code{
-    background: #ffffff;
+
+pre{
+    margin-left: 20px;
     color: #0ea432;
 }
+
 textarea{
     resize: both;
     width: 100%;
     height: 100%;
 }
+
 /* hover dropdown menus */
 @media only screen and (max-width: 991px) {
     .navbar-hover .show > .dropdown-toggle::after{
         transform: rotate(-90deg);
     }
 }
+
 @media only screen and (min-width: 992px) {
     .navbar-hover .collapse ul li{position:relative;}
     .navbar-hover .collapse ul li:hover> ul{display:block}
@@ -32,29 +38,52 @@ textarea{
     .navbar-hover .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
     /*.navbar-hover .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}*/
 }
+
 .my-auto{
     margin-top: auto;
     margin-bottom: auto;
 }
+
 h2, p{
      word-wrap: break-word;
 }
+
 #wrapper {
   text-align: center;
 }
+
 #page_selector {
   display: inline-block;
 }
+
 @media (min-width:800px) {
     .affix {
         position: fixed;
         right: 5%;
     }
 }
+
 @media (max-width:800px) {
     .affix {
         border-top: 1px solid black;
         margin-top: 5%;
         padding-top: 5%;
     }
+}
+
+h1, h2, h3, h4, h5, h6{
+    text-underline: black;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+body{
+    background: #e9ecef;
+}
+
+p img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }

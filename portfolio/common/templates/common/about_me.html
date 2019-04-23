@@ -129,7 +129,11 @@
             </ul>
         </div>
         <div class="col col-xl-2 col-lg-2 col-md-2 col-sm-12 text-center affix">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            {% if creator %}
+                <img class="rounded-circle" src="{{ creator.0.avatar.url }}" alt="image de profil de brice harismendy" width="140" height="140">
+            {% else %}
+                <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+            {% endif %}
             <div class="text-left">
                 Permis B <br>
                 Contacts :<br>

@@ -16,19 +16,19 @@ def gestion_cat(request):
     if not request.user.is_superuser:  # security to redirect user that aren't admin
         return redirect(reverse('accueil'))
     form_cat = CategorieForm
-
-    cat = Categorie.objects.all().order_by('niv_cat')
-    niv_haut = Categorie.objects.all().order_by('niv_cat')[0].niv_cat
-    niv_bas = Categorie.objects.all().order_by('-niv_cat')[0].niv_cat
-
     list_of_all_category = []
-    for niv in range(niv_haut, niv_bas + 1):
-        temp = []
-        for element in cat:
-            if element.niv_cat == niv:
-                temp.append(element)
-        list_of_all_category.insert(niv, temp[:])
-        temp.clear()
+    cat = Categorie.objects.all().order_by('niv_cat')
+    if len(cat) > 0:
+        niv_haut = Categorie.objects.all().order_by('niv_cat')[0].niv_cat
+        niv_bas = Categorie.objects.all().order_by('-niv_cat')[0].niv_cat
+
+        for niv in range(niv_haut, niv_bas + 1):
+            temp = []
+            for element in cat:
+                if element.niv_cat == niv:
+                    temp.append(element)
+            list_of_all_category.insert(niv, temp[:])
+            temp.clear()
 
     context = {'form_cat': form_cat,
                "category": list_of_all_category}

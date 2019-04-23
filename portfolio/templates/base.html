@@ -45,20 +45,44 @@
                                                                 <ul class="dropdown-menu">
                                                                     {% for cat4 in cat_niv_4 %}
                                                                         {% if cat4.cat_sup == cat3 %}
-                                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=4 id_cat=cat4.id %}">{{ cat4.nom_categorie }}</a></li>
+                                                                            {% if cat4.has_sub %}
+                                                                                <li><a class="dropdown-item dropdown-toggle" href="#">{{ cat4.nom_categorie }}</a>
+                                                                                    <ul class="dropdown-menu">
+                                                                                    {% for cat5 in cat_niv_5 %}
+                                                                                        {% if cat5.cat_sup == cat4 %}
+                                                                                            {% if cat5.has_sub %}
+                                                                                                <li><a class="dropdown-item dropdown-toggle" href="#">{{ cat5.nom_categorie }}</a>
+                                                                                                    <ul class="dropdown-menu">
+                                                                                                    {% for cat6 in cat_niv_6 %}
+                                                                                                        {% if cat6.cat_sup == cat5 %}
+                                                                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' id_cat=cat6.id %}">{{ cat6.nom_categorie }}</a></li>
+                                                                                                        {% endif %}
+                                                                                                    {% endfor %}
+                                                                                                    </ul>
+                                                                                                </li>
+                                                                                            {% else %}
+                                                                                                <li><a class="dropdown-item" href="{% url 'article/list_by_cat' id_cat=cat5.id %}">{{ cat5.nom_categorie }}</a></li>
+                                                                                            {% endif %}
+                                                                                        {% endif %}
+                                                                                    {% endfor %}
+                                                                                    </ul>
+                                                                                </li>
+                                                                                {% else %}
+                                                                                    <li><a class="dropdown-item" href="{% url 'article/list_by_cat' id_cat=cat4.id %}">{{ cat4.nom_categorie }}</a></li>
+                                                                            {% endif %}
                                                                         {% endif %}
                                                                     {% endfor %}
                                                                 </ul>
                                                             </li>
                                                         {% else %}
-                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=3 id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
+                                                             <li><a class="dropdown-item" href="{% url 'article/list_by_cat' id_cat=cat3.id %}">{{ cat3.nom_categorie }}</a></li>
                                                         {% endif %}
                                                     {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </li>
                                     {% else %}
-                                        <li><a class="dropdown-item" href="{% url 'article/list_by_cat' niv_cat=2 id_cat=cat2.id %}">{{ cat2.nom_categorie }}</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'article/list_by_cat' id_cat=cat2.id %}">{{ cat2.nom_categorie }}</a></li>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
@@ -66,7 +90,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'article/list_by_cat' niv_cat=1 id_cat=cat1.id %}">{{ cat1.nom_categorie }}</a>
+                            <a class="nav-link" href="{% url 'article/list_by_cat' id_cat=cat1.id %}">{{ cat1.nom_categorie }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -126,7 +150,11 @@
                         <p class="text-justify">
                             {{ article.formatted_resume_markdown|safe|slice:":200" }}
                         </p>
-                    <p><a href="{% url 'article/affichage' id_article=article.id %} "><button class="btn btn-dark" role="button"> Voir plus »</button></a></p>
+                        <p>
+                            <a href="{% url 'article/affichage' id_article=article.id %} ">
+                                <button class="btn btn-dark" role="button"> Voir plus »</button>
+                            </a>
+                        </p>
                 </div>
                 {% endif %}
             {% endfor %}

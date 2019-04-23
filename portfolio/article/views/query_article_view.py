@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from article.models import Article
 from common.lib.context import context_general
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from article.forms import RechercheArt
 
 
-def query_cat(request, niv_cat, id_cat):
+def query_cat(request, id_cat):
     """
     views to query a category
     :param request: environement variable
@@ -14,7 +14,9 @@ def query_cat(request, niv_cat, id_cat):
     :return: template listing accurate category
     """
     list_of_article = Article.objects.filter(categorie=id_cat).order_by('id')
-
+    if len(list_of_article) == 1:
+        # on redirige vers l'article directement
+        return redirect('/article/affichage_article/'+str(list_of_article[0].id)+'')
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)
 

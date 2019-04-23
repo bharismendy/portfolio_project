@@ -10,7 +10,7 @@ def accueil(request):
     :param request:environement variable
     :return: template of the root page
     """
-    list_of_article = Article.objects.all().order_by('id')
+    list_of_article = Article.objects.all().order_by('-id')
     page = request.GET.get('page', 1)
     paginator = Paginator(list_of_article, 9)
     try:

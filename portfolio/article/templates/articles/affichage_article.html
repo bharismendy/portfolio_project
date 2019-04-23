@@ -10,15 +10,35 @@
                         <hr>
                     </div>
                 {% endif %}
-                <div class="text-center">
+                <div class="text-center row">
                 {% if article.image %}
                     <img class="rounded-circle float-left" src="{{ article.image.url }}" alt="Photo de l'article" width="140" height="140">
+                    <div class="align-middle">
+                        <h1>{{ article.titre }}</h1>
+                        <div class="text-left">
+                            <em >le {{ article.date }}</em>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="align-middle">
+                        <h1>{{ article.titre }}</h1>
+                        <div class="text-left">
+                            <em >le {{ article.date }}</em>
+                        </div>
+                    </div>
                 {% endif %}
-                    <h1>{{ article.titre }}</h1>
                 </div>
+                <hr>
+                {% if article.content %}
                     <article class="text-justify mt-5">
                         {{ article.formatted_content_markdown |safe }}
                     </article>
+                {% endif %}
+                {% if article.is_pdf %}
+                    <embed src="{{article.lien_pdf.url}}" type="application/pdf" height="1000px" width="100%">
+                {% else %}
+
+                {% endif %}
             </div>
         </div>
     </div>

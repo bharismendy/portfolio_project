@@ -15,7 +15,9 @@ class Article (models.Model):
     publish = models.BooleanField(default=False)
     titre = models.CharField(max_length=100, null=False, default=None)
     resume = models.CharField(max_length=200, null=False, default=None)
-    content = MarkdownxField()
+    content = MarkdownxField(blank=True, null=True)
+    is_pdf = models.BooleanField(default=False)
+    lien_pdf = models.FileField(null=True, blank=True, upload_to="article_pdf/")
 
     @property
     def formatted_resume_markdown(self):
